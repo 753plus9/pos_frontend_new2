@@ -41,9 +41,9 @@ jobs:
       #2
       - name: Copy artifact for deployment job
         run: |
-          mkdir deploy
-          cp -r ./.next/standalone/. ./deploy
-          cp -r ./.next/static/. ./deploy/.next/static
+          mkdir -p deploy
+          cp -r .next/standalone/* deploy/
+          cp -r .next/static deploy/.next/static
           cp -r public deploy/public         # ✅ publicフォルダも必要
           cp package.json deploy/            # ✅ Azureが依存関係を解決できるようにするため
           cp next.config.js deploy/ || true  # ✅ 存在しない場合でも無視する
