@@ -27,7 +27,7 @@ jobs:
 
         # ✅ 環境変数とビルド処理の明示
         run: |
-          npm ci                              # ✅ package-lock.jsonがある前提（なければnpm installに）
+          npm install                              # ✅ package-lock.jsonがある前提（なければnpm installに）
           npm run build
       #1
       - name: Install and Build
