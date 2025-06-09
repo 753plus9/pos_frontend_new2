@@ -40,12 +40,12 @@ jobs:
       - name: Copy artifact for deployment job
         run: |
           mkdir -p deploy/.next
-          cp -r .next/standalone/* deploy/
-          cp -r .next/static deploy/.next/static
+          cp -r .next/standalone/. deploy/
+          cp -r .next/static/. deploy/.next/static
           cp -r public deploy/public
           cp package.json deploy/
           cp next.config.js deploy/ || true
-          cp .env.production deploy/           # ← ✅ これが追加点！
+          cp .env.production deploy/
 
       - name: Zip artifact for deployment
         run: |
