@@ -31,9 +31,9 @@ jobs:
           npm run build
       #1
       - name: Install and Build
-        env:
-            NEXT_PUBLIC_API_ENDPOINT: ${{ secrets.NEXT_PUBLIC_API_ENDPOINT }}
+
         run: |
+          echo "NEXT_PUBLIC_API_ENDPOINT=${{ secrets.NEXT_PUBLIC_API_ENDPOINT }}" > .env.production
           npm install
           npm run build --if-present
           npm run test --if-present
