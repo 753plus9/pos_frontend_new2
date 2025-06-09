@@ -23,12 +23,12 @@ jobs:
         with:
           node-version: '20.x'
 
-      - name: npm install, build, and test
+      # - name: npm install, build, and test
 
-        # ✅ 環境変数とビルド処理の明示
-        run: |
-          npm install                              # ✅ package-lock.jsonがある前提（なければnpm installに）
-          npm run build
+      #   # ✅ 環境変数とビルド処理の明示
+      #   run: |
+      #     npm install                              # ✅ package-lock.jsonがある前提（なければnpm installに）
+      #     npm run build
       #1
       - name: Install and Build
 
