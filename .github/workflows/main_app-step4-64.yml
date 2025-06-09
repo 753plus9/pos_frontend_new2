@@ -45,7 +45,7 @@ jobs:
           cp -r public deploy/public
           cp package.json deploy/
           cp next.config.js deploy/ || true
-
+          cp .env.production deploy/           # ← ✅ これが追加点！
 
       - name: Zip artifact for deployment
         run: |
