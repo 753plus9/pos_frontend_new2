@@ -25,6 +25,10 @@ jobs:
 
       - name: npm install, build, and test
 
+        # ✅ 環境変数とビルド処理の明示
+        run: |
+          npm ci                              # ✅ package-lock.jsonがある前提（なければnpm installに）
+          npm run build
       #1
         env:
             NEXT_PUBLIC_API_ENDPOINT: ${{ secrets.NEXT_PUBLIC_API_ENDPOINT }}
@@ -40,9 +44,14 @@ jobs:
           mkdir deploy
           cp -r ./.next/standalone/. ./deploy
           cp -r ./.next/static/. ./deploy/.next/static
+          cp -r public deploy/public         # ✅ publicフォルダも必要
+          cp package.json deploy/            # ✅ Azureが依存関係を解決できるようにするため
+          cp next.config.js deploy/ || true  # ✅ 存在しない場合でも無視する
 
       - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+        run: |
+          cd deploy
+          zip -r ../release.zip .            # ✅ deploy配下だけzipする
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
