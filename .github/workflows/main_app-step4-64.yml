@@ -25,7 +25,10 @@ jobs:
 
       # ✅ ここで .env.production を作成
       - name: Set environment variable for build
-        run: echo "NEXT_PUBLIC_API_ENDPOINT=${{ secrets.NEXT_PUBLIC_API_ENDPOINT }}" > .env.production
+        run: |
+          echo "NEXT_PUBLIC_API_ENDPOINT=${{ secrets.NEXT_PUBLIC_API_ENDPOINT }}" > .env.production
+          echo "✅ .env.production 内容:"
+          cat .env.production
 
       # ✅ 環境変数が入った状態でビルドを実行
       - name: Install dependencies and build
